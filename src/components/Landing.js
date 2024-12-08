@@ -11,13 +11,7 @@ const Landing = () => {
         </p>
         <Link to="/login" style={styles.landingButton}>Login</Link>
       </div>
-      <div style={styles.landingImage}>
-        <img
-          src="https://via.placeholder.com/600x400.png"  // Placeholder image, replace with your own
-          alt="App Preview"
-          style={styles.landingPreviewImage}
-        />
-      </div>
+      
     </div>
   );
 };
