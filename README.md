@@ -1,70 +1,206 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Application Documentation
 
-## Available Scripts
+## Table of Contents
+1. [Overview](#overview)
+2. [Technologies Used](#technologies-used)
+3. [Installation](#installation)
+4. [Features](#features)
+5. [Folder Structure](#folder-structure)
+6. [API Endpoints](#api-endpoints)
+7. [Authentication](#authentication)
+8. [Routing](#routing)
+9. [Testing](#testing)
+10. [Contributing](#contributing)
+11. [License](#license)
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Overview
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This is a React-based web application that offers users a platform to interact with various albums and photos. The app allows users to log in using Google authentication, view and manage albums, and browse photos. The app implements dark/light mode switching, and page persistence via URL routes, allowing users to reload their current page and stay on the same route.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## Technologies Used
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Frontend**:
+  - React.js (for building the user interface)
+  - React Router (for routing and navigation)
+  - Firebase (for authentication)
+  - Tailwind CSS (for styling)
+  - Jest, React Testing Library (for unit testing)
 
-### `npm run build`
+- **Backend**:
+  - Node.js and Express (for providing RESTful API endpoints)
+  - Firebase (for handling authentication and user management)
+  
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Installation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Prerequisites
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Before you begin, ensure you have the following installed:
 
-### `npm run eject`
+- Node.js (>= 14.x)
+- npm (>= 6.x)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Steps
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Clone the repository:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   ```bash
+   git clone <repository-url>
+   cd <project-folder>
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2. Install the dependencies:
 
-## Learn More
+   ```bash
+   npm install
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3. Run the application locally:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+   ```bash
+   npm start
+   ```
 
-### Code Splitting
+   The app will be available at `http://localhost:3000`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+4. To run the tests:
 
-### Analyzing the Bundle Size
+   ```bash
+   npm test
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## Features
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- **User Authentication**:
+  - Users can log in via Google using Firebase Authentication.
+  - Users can log out and the app will update accordingly.
+  
+- **Albums & Photos**:
+  - Users can view and browse albums.
+  - Each album contains multiple photos, and each photo has a title and an image URL.
 
-### Advanced Configuration
+- **Routing**:
+  - The app uses React Router to handle navigation between pages such as the Landing Page, Login Page, Dashboard, User Profile, Album Details, and Photo Details.
+  - Pages persist across reloads, meaning if a user is on a page (e.g., `/photo/1554`), refreshing the page will keep them on the same page.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- **Dark/Light Mode**:
+  - Users can toggle between dark and light modes.
+  - The app will remember the mode even after page reloads using CSS class toggling.
 
-### Deployment
+- **Responsive Design**:
+  - The app is fully responsive, with a mobile-first design and an adaptive layout.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+## Folder Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```plaintext
+/ 
+|-- /src
+    |-- /components
+        |-- Landing.js
+        |-- Login.js
+        |-- Home.js
+        |-- User.js
+        |-- Album.js
+        |-- Photo.js
+    |-- /firebase
+        |-- index.js (Firebase config and initialization)
+    |-- App.js (Main application file with routing)
+    |-- index.js (Entry point of the app)
+    |-- /assets
+        |-- logo.svg
+    |-- /styles
+        |-- tailwind.css
+    |-- App.test.js (Unit tests)
+    |-- /hooks
+        |-- useProjects.js
+    |-- /api
+        |-- api.js (RESTful API handling)
+```
+
+---
+
+## API Endpoints
+
+### `/api/users`
+- **GET**: Retrieve all users.
+- **POST**: Create a new user with `name`, `username`, and `email`.
+
+### `/api/albums`
+- **GET**: Retrieve all albums.
+- **POST**: Create a new album with `albumId`, `userId`, and `title`.
+
+### `/api/photos`
+- **GET**: Retrieve all photos of an album.
+- **POST**: Create a new photo with `albumId`, `title`, and `imageUrl`.
+
+---
+
+## Authentication
+
+- The app uses Firebase Authentication for managing user sign-in.
+- Users can sign in using their Google account, and their state will persist using `localStorage`.
+- If a user is already logged in, they will be automatically authenticated and redirected to the home/dashboard page.
+
+### Firebase Configuration
+
+The Firebase configuration is handled in `src/firebase/index.js`, where Firebase is initialized with the credentials from your Firebase project.
+
+---
+
+## Routing
+
+- The app uses `react-router-dom` for routing between the pages.
+- The available routes are:
+  - `/` - Landing Page
+  - `/login` - Login Page
+  - `/home` - Home/Dashboard Page (only accessible after login)
+  - `/user/:id` - User Profile Page
+  - `/album/:id` - Album Details Page
+  - `/photo/:id` - Photo Details Page
+- The app uses `Navigate` from `react-router-dom` to redirect users to the login page if they aren't authenticated.
+
+---
+
+## Testing
+
+The app uses **Jest** and **React Testing Library** for unit testing. 
+
+### Test Files
+
+- **App.test.js**: Tests for the main application logic and rendering.
+- **Login.test.js**: Tests for the login functionality.
+- **Home.test.js**: Tests for the Home page components and layout.
+
+### Running Tests
+
+Run the tests by executing the following command:
+
+```bash
+npm test
+```
+
+---
+
+## Contributing
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Commit your changes (`git commit -am 'Add new feature'`).
+4. Push to the branch (`git push origin feature-branch`).
+5. Open a pull request.
+
+---
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
